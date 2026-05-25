@@ -1,29 +1,19 @@
-// models/Note.js
-let notes = [];
-let nextId = 1;
+const mongoose = require('mongoose');
 
-const getAll = () => [...notes];
+const noteSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  content: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-const getById = (id) => notes.find(note => note.id === id);
-
-const create = (title, content) => {
-  const newNote = { id: nextId++, title, content };
-  notes.push(newNote);
-  return newNote;
-};
-
-const update = (id, title, content) => {
-  const index = notes.findIndex(note => note.id === id);
-  if (index === -1) return null;
-  notes[index] = { ...notes[index], title, content };
-  return notes[index];
-};
-
-const remove = (id) => {
-  const index = notes.findIndex(note => note.id === id);
-  if (index === -1) return false;
-  notes.splice(index, 1);
-  return true;
-};
-
-module.exports = { getAll, getById, create, update, remove };
+module.exports = mongoose.model('Note', noteSchema);
