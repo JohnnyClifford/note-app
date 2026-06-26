@@ -1,0 +1,14 @@
+{
+  "notes": [
+    {
+      "title": "Imported Note 1",
+      "content": "This was imported",
+      "tags": ["imported", "test"]
+    },
+    {
+      "title": "Imported Note 2",
+      "content": "Another imported note",
+      "tags": ["imported"]
+    }
+  ]
+}
